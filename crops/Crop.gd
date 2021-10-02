@@ -5,11 +5,12 @@ signal harvested(crop)
 
 export(int) var growth_time: int = 100 # Ticks required to grow.
 var growth_progress: int = 0
+var hydrated: bool = false
 
 onready var animated_sprite: AnimatedSprite = get_node("AnimatedSprite")
 
 func can_grow() -> bool:
-	return growth_progress < growth_time
+	return growth_progress < growth_time && hydrated
 
 
 func can_harvest() -> bool:
@@ -32,8 +33,3 @@ func harvest() -> void:
 func _on_GrowthTickTimer_timeout() -> void:
 	if can_grow():
 		grow()
-
-
-func _on_Crop_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if event.is_action_pressed("ui_harvest") and can_harvest():
-		harvest()

@@ -13,5 +13,4 @@ autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
-[connection signal="input_event" from="." to="." method="_on_Crop_input_event"]
 [connection signal="timeout" from="GrowthTickTimer" to="." method="_on_GrowthTickTimer_timeout"]

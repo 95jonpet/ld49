@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://characters/player/player_move.png" type="Texture" id=1]
 [ext_resource path="res://characters/Character.tscn" type="PackedScene" id=2]
@@ -6,8 +6,6 @@
 [ext_resource path="res://characters/player/FiniteStateMachine.gd" type="Script" id=4]
 [ext_resource path="res://characters/player/player_idle.png" type="Texture" id=5]
 [ext_resource path="res://light/light.png" type="Texture" id=6]
-[ext_resource path="res://items/Shovel.tscn" type="PackedScene" id=7]
-[ext_resource path="res://items/Scythe.tscn" type="PackedScene" id=8]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 5 )
@@ -170,14 +168,4 @@ texture_scale = 0.25
 energy = 0.75
 shadow_enabled = true
 
-[node name="ItemPosition" type="Position2D" parent="." index="5"]
-position = Vector2( 0, -16 )
-
-[node name="Hand" type="Position2D" parent="." index="6"]
-
-[node name="Scythe" parent="Hand" index="0" instance=ExtResource( 8 )]
-visible = false
-position = Vector2( -4, -4 )
-
-[node name="Shovel" parent="Hand" index="1" instance=ExtResource( 7 )]
-position = Vector2( 6, -3 )
+[node name="Hand" type="Position2D" parent="." index="5"]
