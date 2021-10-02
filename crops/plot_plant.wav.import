@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/plot_plant.wav-cb7abf1c3d140cdf691de0d2830efb42.sample"
+
+[deps]
+
+source_file="res://crops/plot_plant.wav"
+dest_files=[ "res://.import/plot_plant.wav-cb7abf1c3d140cdf691de0d2830efb42.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
