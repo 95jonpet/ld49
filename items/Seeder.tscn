@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://items/Item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://items/Seeder.gd" type="Script" id=2]
+[ext_resource path="res://items/seeder.png" type="Texture" id=3]
+[ext_resource path="res://fonts/font.tres" type="DynamicFont" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_local_to_scene = true
+resource_name = "use"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("PivotPoint/Particles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 16.0
+
+[node name="Seeder" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="PivotPoint" parent="." index="0"]
+position = Vector2( 5, 0 )
+
+[node name="Sprite" parent="PivotPoint" index="0"]
+texture = ExtResource( 3 )
+
+[node name="AnimationPlayer" parent="." index="1"]
+anims/use = SubResource( 1 )
+
+[node name="LabelPivot" type="Node2D" parent="." index="2"]
+position = Vector2( 0, -8 )
+
+[node name="Label" type="Label" parent="LabelPivot" index="0"]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0.921569, 0.929412, 0.913725, 1 )
+text = "Wheat"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SeedPickupArea" type="Area2D" parent="." index="3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SeedPickupArea" index="0"]
+shape = SubResource( 2 )
+
+[connection signal="body_shape_entered" from="SeedPickupArea" to="." method="_on_SeedPickupArea_body_shape_entered"]

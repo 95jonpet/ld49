@@ -1,8 +1,9 @@
 class_name Plot
-extends Area2D
+extends StaticBody2D
 
+const HYDRATION_LOSS_PER_SECOND: float = 0.0075
 const RAIN_HYDRATION_PER_SECOND: float = 0.05
-const WATERING_HYDRATION: float = 0.05
+const WATERING_HYDRATION: float = 1.0
 
 export(float) var hydration: float = 0
 
@@ -31,10 +32,11 @@ func _process(delta: float) -> void:
 	if Weather.is_raining():
 		hydration = min(hydration + RAIN_HYDRATION_PER_SECOND * delta, 1)
 	
-	animated_sprite.frame = int(floor(hydration * (animated_sprite.frames.get_frame_count("default") - 1)))
+	animated_sprite.frame = int(floor(hydration * animated_sprite.frames.get_frame_count("default")))
 	
 	if crop:
 		crop.hydrated = hydration >= 0.5
+		hydration = max(hydration - HYDRATION_LOSS_PER_SECOND * delta, 0)
 
 
 func _on_Crop_harvested_event(_crop: Crop) -> void:

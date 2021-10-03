@@ -2,7 +2,6 @@ extends Area2D
 
 onready var tile_map: TileMap = get_node("../TileMap")
 onready var player: Player = get_node("../Player")
-onready var wheat_scene: PackedScene = preload("res://crops/Wheat.tscn")
 
 var tile_position: Vector2 = Vector2.ZERO
 
@@ -16,11 +15,13 @@ func _physics_process(_delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if not event.is_action_pressed("ui_action"):
+	if not event.is_action_pressed("ui_action") or not player or not player.current_item:
 		return
 	
-	for area in get_overlapping_areas():
-		if area.has_method("plant"):
-			area.plant(wheat_scene.instance())
-		if area.has_method("harvest"):
-			area.harvest()
+	var overlapping_nodes: Array = get_overlapping_bodies()
+	
+	if overlapping_nodes.empty():
+		player.current_item.use_on_free(global_position)
+	else:
+		for node in overlapping_nodes:
+			player.current_item.use_on_node(node)

@@ -1,11 +1,15 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://characters/player/player_move.png" type="Texture" id=1]
 [ext_resource path="res://characters/Character.tscn" type="PackedScene" id=2]
 [ext_resource path="res://characters/player/Player.gd" type="Script" id=3]
 [ext_resource path="res://characters/player/FiniteStateMachine.gd" type="Script" id=4]
 [ext_resource path="res://characters/player/player_idle.png" type="Texture" id=5]
-[ext_resource path="res://light/light.png" type="Texture" id=6]
+[ext_resource path="res://items/Seeder.tscn" type="PackedScene" id=6]
+[ext_resource path="res://items/Scythe.tscn" type="PackedScene" id=7]
+[ext_resource path="res://items/Shovel.tscn" type="PackedScene" id=8]
+[ext_resource path="res://items/WateringCan.tscn" type="PackedScene" id=9]
+[ext_resource path="res://items/Lantern.tscn" type="PackedScene" id=10]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 5 )
@@ -60,11 +64,11 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=14]
+[sub_resource type="CapsuleShape2D" id=12]
 radius = 4.0
 height = 8.0
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=13]
 length = 0.6
 loop = true
 step = 0.15
@@ -93,7 +97,7 @@ tracks/1/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Hand:position")
+tracks/2/path = NodePath("Items:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -105,7 +109,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 1 ), Vector2( 0, 2 ) ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=14]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -133,7 +137,7 @@ tracks/1/keys = {
 "values": [ 0, 1, 2, 3, 4, 5 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Hand:position")
+tracks/2/path = NodePath("Items:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -156,16 +160,24 @@ frames = SubResource( 11 )
 animation = "idle"
 
 [node name="CollisionShape2D" parent="." index="2"]
-shape = SubResource( 14 )
+shape = SubResource( 12 )
 
 [node name="AnimationPlayer" parent="." index="3"]
-anims/idle = SubResource( 12 )
-anims/move = SubResource( 13 )
+anims/idle = SubResource( 13 )
+anims/move = SubResource( 14 )
 
-[node name="Light2D" type="Light2D" parent="." index="4"]
-texture = ExtResource( 6 )
-texture_scale = 0.25
-energy = 0.75
-shadow_enabled = true
+[node name="Items" type="Node2D" parent="." index="4"]
 
-[node name="Hand" type="Position2D" parent="." index="5"]
+[node name="Scythe" parent="Items" index="0" instance=ExtResource( 7 )]
+
+[node name="Shovel" parent="Items" index="1" instance=ExtResource( 8 )]
+visible = false
+
+[node name="Seeder" parent="Items" index="2" instance=ExtResource( 6 )]
+visible = false
+
+[node name="WateringCan" parent="Items" index="3" instance=ExtResource( 9 )]
+visible = false
+
+[node name="Lantern" parent="Items" index="4" instance=ExtResource( 10 )]
+visible = false

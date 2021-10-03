@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://world/crate.png" type="Texture" id=1]
+[ext_resource path="res://fonts/font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://world/SeedCrate.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 8 )
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 18.0
+
+[node name="SeedCrate" type="StaticBody2D"]
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="LabelPosition" type="Position2D" parent="."]
+position = Vector2( 8, 0 )
+
+[node name="Label" type="Label" parent="LabelPosition"]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.921569, 0.929412, 0.913725, 1 )
+text = "seed"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 8, 8 )
+shape = SubResource( 1 )
+
+[node name="SeedArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SeedArea"]
+position = Vector2( 8, 8 )
+shape = SubResource( 2 )

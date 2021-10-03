@@ -5,34 +5,34 @@
 [ext_resource path="res://crops/crop_harvested.wav" type="AudioStream" id=3]
 [ext_resource path="res://crops/Plot.gd" type="Script" id=4]
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 2 )
 region = Rect2( 16, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 2 )
 region = Rect2( 32, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 2 )
 region = Rect2( 48, 0, 16, 16 )
 
-[sub_resource type="SpriteFrames" id=6]
+[sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 7, 6 )
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=7]
 resource_name = "harvest"
 tracks/0/type = "audio"
 tracks/0/path = NodePath("AudioStreamPlayer2D")
@@ -61,7 +61,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=8]
 resource_name = "plant"
 tracks/0/type = "audio"
 tracks/0/path = NodePath("AudioStreamPlayer2D")
@@ -78,7 +78,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="ParticlesMaterial" id=10]
+[sub_resource type="ParticlesMaterial" id=9]
 emission_shape = 1
 emission_sphere_radius = 4.0
 flag_disable_z = true
@@ -89,24 +89,26 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 color = Color( 0.870588, 0.619608, 0.254902, 1 )
 
-[node name="Plot" type="Area2D"]
+[node name="Plot" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource( 4 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 6 )
+frames = SubResource( 5 )
 centered = false
 
 [node name="CropPosition" type="Position2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 8, 9 )
-shape = SubResource( 7 )
+shape = SubResource( 6 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/harvest = SubResource( 8 )
-anims/plant = SubResource( 9 )
+anims/harvest = SubResource( 7 )
+anims/plant = SubResource( 8 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
 position = Vector2( 8, 8 )
@@ -115,4 +117,4 @@ amount = 32
 lifetime = 1.1
 one_shot = true
 explosiveness = 1.0
-process_material = SubResource( 10 )
+process_material = SubResource( 9 )
