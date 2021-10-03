@@ -39,6 +39,9 @@ func _crop_from_seed(seed_name: String) -> Crop:
 
 
 func _on_SeedPickupArea_body_shape_entered(_body_id: int, body: Node, _body_shape: int, _local_shape: int) -> void:
+	if not visible:
+		return
+	
 	if body.has_method("get_seed_name"):
 		current_seed = body.get_seed_name()
 		label.text = current_seed

@@ -24,6 +24,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://characters/FSM.gd"
 }, {
+"base": "CanvasLayer",
+"class": "GUI",
+"language": "GDScript",
+"path": "res://world/GUI.gd"
+}, {
+"base": "Node2D",
+"class": "Game",
+"language": "GDScript",
+"path": "res://Game.gd"
+}, {
 "base": "Node2D",
 "class": "Item",
 "language": "GDScript",
@@ -54,6 +64,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://items/Shovel.gd"
 }, {
+"base": "StaticBody2D",
+"class": "Stone",
+"language": "GDScript",
+"path": "res://world/Stone.gd"
+}, {
 "base": "Item",
 "class": "WateringCan",
 "language": "GDScript",
@@ -63,25 +78,33 @@ _global_script_class_icons={
 "Character": "",
 "Crop": "",
 "FiniteStateMachine": "",
+"GUI": "",
+"Game": "",
 "Item": "",
 "Player": "",
 "Plot": "",
 "Scythe": "res://items/scythe.png",
 "Seeder": "res://items/seeder.png",
 "Shovel": "res://items/shovel.png",
+"Stone": "res://world/stone.png",
 "WateringCan": "res://items/watering_can.png"
 }
 
 [application]
 
-config/name="LD49"
+config/name="Unstable farming"
+config/description="Made for Ludum Dare 49."
 run/main_scene="res://Game.tscn"
+boot_splash/fullsize=false
+boot_splash/use_filter=false
 config/icon="res://icon.png"
+config/windows_native_icon="res://icon.ico"
 
 [autoload]
 
 Weather="*res://weather/Weather.tscn"
 BackgroundMusic="*res://music/BackgroundMusic.tscn"
+Gui="*res://world/GUI.tscn"
 
 [display]
 

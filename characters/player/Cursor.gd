@@ -15,7 +15,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if not event.is_action_pressed("ui_action") or not player or not player.current_item:
+	if not event.is_action_pressed("ui_action") or not player or not player.current_item or not player.current_item.is_ready():
 		return
 	
 	var overlapping_nodes: Array = get_overlapping_bodies()

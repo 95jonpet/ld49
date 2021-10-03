@@ -26,6 +26,10 @@ func grow() -> void:
 
 
 func harvest() -> void:
+	if not can_harvest():
+		return
+	
+	get_node("/root/Gui").add_score(growth_time)
 	emit_signal("harvested", self)
 	queue_free()
 
